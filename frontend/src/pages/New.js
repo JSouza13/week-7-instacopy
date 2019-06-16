@@ -1,39 +1,40 @@
-import React, { Component } from "react";
-import api from "../services/api";
+import React, { Component } from 'react';
+import api from '../services/api';
 
-import "./New.css";
+import './New.css';
 
 class New extends Component {
   state = {
     image: null,
-    author: "",
-    place: "",
-    description: "",
-    hashtags: ""
+    author: '',
+    place: '',
+    description: '',
+    hashtags: '',
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
 
-    data.append("image", this.state.image);
-    data.append("author", this.state.author);
-    data.append("place", this.state.place);
-    data.append("description", this.state.description);
-    data.append("hashtags", this.state.hashtags);
+    data.append('image', this.state.image);
+    data.append('author', this.state.author);
+    data.append('place', this.state.place);
+    data.append('description', this.state.description);
+    data.append('hashtags', this.state.hashtags);
 
-    await api.post("posts", data);
+    await api.post('posts', data);
 
     this.props.history.push('/');
   };
 
-  handleImageChange = e => {
+  handleImageChange = (e) => {
     this.setState({ image: e.target.files[0] });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   render() {
     return (
       <form id="new-post" onSubmit={this.handleSubmit}>
